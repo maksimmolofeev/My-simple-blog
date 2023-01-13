@@ -1,28 +1,35 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const { reducer: productReducer, action: productAction } = createSlice({
+export const { reducer: productReducer, actions: productAction } = createSlice({
     name: 'product',
     initialState: {
-        _collection: [
-            {id: 1, title: 'Монобукеты', url: 'mono-bukety', img: 'https://www.flower-shop.ru/images/goods/res4/132792.jpg'},
-            {id: 2, title: 'Авторские букеты', url: 'avtorskie-bukety', img: 'https://w7.pngwing.com/pngs/898/494/png-transparent-bouquets-of-roses-rose-red-rose-bouquets-of-roses-thumbnail.png'},
-            {id: 3, title: 'Дуо букеты', url: 'duo-bukety', img: 'https://w7.pngwing.com/pngs/898/494/png-transparent-bouquets-of-roses-rose-red-rose-bouquets-of-roses-thumbnail.png'},
-            {id: 4, title: 'Новый год', url: 'novyy-god', img: 'https://w7.pngwing.com/pngs/898/494/png-transparent-bouquets-of-roses-rose-red-rose-bouquets-of-roses-thumbnail.png'},
-            {id: 5, title: 'Букеты в корзине', url: 'bukety-v-korzine', img: 'https://w7.pngwing.com/pngs/898/494/png-transparent-bouquets-of-roses-rose-red-rose-bouquets-of-roses-thumbnail.png'},
-            {id: 6, title: 'Букет невесты', url: 'bukety-nevesty', img: 'https://w7.pngwing.com/pngs/898/494/png-transparent-bouquets-of-roses-rose-red-rose-bouquets-of-roses-thumbnail.png'},
-        ],
-
-        _product: [
-            {id: 1, name: 'Букет "Зимнее солнце"', price: 1990, advise: true, img: 'https://content2.flowwow-images.com/data/flowers/262x262/23/1672148934_38855923.jpg'},
-            {id: 2, name: 'Букет "Зимнее солнце"', price: 1990, advise: true, img: 'https://content2.flowwow-images.com/data/flowers/262x262/23/1672148934_38855923.jpg'},
-            {id: 3, name: 'Букет "Зимнее солнце"', price: 1990, advise: false, img: 'https://content2.flowwow-images.com/data/flowers/262x262/23/1672148934_38855923.jpg'},
-            {id: 4, name: 'Букет "Зимнее солнце"', price: 1990, advise: true, img: 'https://content2.flowwow-images.com/data/flowers/262x262/23/1672148934_38855923.jpg'},
-            {id: 5, name: 'Букет "Зимнее солнце"', price: 1990, advise: true, img: 'https://content2.flowwow-images.com/data/flowers/262x262/23/1672148934_38855923.jpg'},
-            {id: 6, name: 'Букет "Зимнее солнце"', price: 1990, advise: true, img: 'https://content2.flowwow-images.com/data/flowers/262x262/23/1672148934_38855923.jpg'}
-        ],
+        _categories: [],
+        _products: [],
+        _activeCategory: '',
+        _page: 1,
+        _totalCount: 0,
+        _limit: 16
     },
     reducers: {
-
+        setCategories: (state, data) => {
+            state._categories = data.payload
+        },
+        setProducts: (state, data) => {
+            state._products = data.payload
+        },
+        setActiveCategory: (state, data) => {
+            state._activeCategory = data.payload
+        },
+        setPage: (state, data) => {
+            state._page = data.payload
+        },
+        setTotalCount: (state, data) => {
+            state._totalCount = data.payload
+        },
+        setLimit: (state, data) => {
+            state._limit = data.payload
+        }
     }
 });
 
+export const { setCategories, setProducts, setActiveCategory, setPage, setTotalCount, setLimit } = productAction;

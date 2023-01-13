@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { PRODUCT_ROUTE } from "../utils/consts";
 
 
-function AdviseItem({product}) {
+function CategoryItem({product}) {
 
   const navigate = useNavigate();
   
   return (
-    <Col md='4' onClick={() => navigate(`${PRODUCT_ROUTE}/${product.id}`)}>
+    <Col md='5' className="mb-4" onClick={() => navigate(`${PRODUCT_ROUTE}/${product.id}`)}>
       <Card className="d-flex">
           <Image src={process.env.REACT_APP_API_URL + product.img}/>
           <p style={{margin: 'auto'}}>{product.price} ₽</p>
@@ -19,4 +19,4 @@ function AdviseItem({product}) {
   );
 }
   
-  export default AdviseItem;
+  export default CategoryItem;

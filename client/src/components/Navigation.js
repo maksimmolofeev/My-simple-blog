@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsAuth } from "../store/selectors";
-import { inputAccount } from "../store/userSlicer";
+import { inputAccount, setAuth, setUser } from "../store/userSlicer";
 import { ADMIN_ROUTE, CATALOG_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../utils/consts";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -14,9 +14,14 @@ function Navigation() {
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
 
-    const authorizing = () => {
-      dispatch(inputAccount(true))
-    }
+  const authorizing = () => {
+    navigate(LOGIN_ROUTE)
+  }
+
+  const LogOut = () => {
+    dispatch(setUser({}))
+    dispatch(setAuth(false))
+  }
 
   return (
     <>
@@ -41,7 +46,7 @@ function Navigation() {
                   <Button
                     variant={"outline-dark"}
                     className="m-1"
-                    onClick={() => navigate(LOGIN_ROUTE)}
+                    onClick={LogOut}
                     >
                       Выйти
                     </Button>

@@ -1,21 +1,27 @@
+import { useEffect, useState } from "react";
 import { Col, Row, Container, Image, Button, Accordion } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import AdviseList from "../components/AdviseList";
+import { fetchOnProduct, fetchProducts } from "../http/productApi";
+import { setProducts } from "../store/productSlicer";
+import { selectProduct } from "../store/selectors";
 
 function ProductPage() {
-  const product = {
-    id: 1,
-    name: 'Букет "Зимнее солнце"',
-    price: 1990, 
-    advise: true,
-    img: 'https://content2.flowwow-images.com/data/flowers/262x262/23/1672148934_38855923.jpg',
-    description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga tempora nostrum vitae accusamus, odio quod incidunt. Adipisci aperiam vel dicta harum, dolor, non voluptatibus veniam sunt cupiditate numquam est! Est.'
-  }
+  const [product, setProduct] = useState({composition: []});
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    fetchOnProduct(id).then(data => setProduct(data))
+    fetchProducts().then(data => dispatch(setProducts(data.rows)))
+  }, []);
+  console.log(product)
     return (
       <Container className="mt-5">
         <Row className="mb-5">
           <Col md={10}>
-            <Image src={product.img}/>
+            <Image width={'100%'} src={process.env.REACT_APP_API_URL + product.img}/>
           </Col>
 
           <Col md={10}>
@@ -33,8 +39,7 @@ function ProductPage() {
               <Accordion.Item eventKey="1">
                 <Accordion.Header>Характеристики</Accordion.Header>
                 <Accordion.Body>
-                  <p>Размер - 25 шт.</p>
-                  <p>Состав - роза</p>
+                  {product.composition.map(item => <p>{item.name} - {item.description} шт.</p>)}
                 </Accordion.Body>
               </Accordion.Item>
               <Accordion.Item eventKey="2">
