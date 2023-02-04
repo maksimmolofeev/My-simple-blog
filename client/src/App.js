@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { check } from './http/userApi';
 import { setAuth } from './store/userSlicer';
 import { Spinner } from 'react-bootstrap';
+import styled from 'styled-components';
 
 function App() {
   const user = useSelector(selectUser);

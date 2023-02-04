@@ -3,7 +3,7 @@ import { Button, Navbar } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsAuth } from "../store/selectors";
+import { selectIsAuth, selectUser } from "../store/selectors";
 import { inputAccount, setAuth, setUser } from "../store/userSlicer";
 import { ADMIN_ROUTE, CATALOG_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../utils/consts";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -23,6 +23,8 @@ function Navigation() {
     dispatch(setAuth(false))
   }
 
+  const user = useSelector(selectUser)
+  console.log(user)
   return (
     <>
       <Navbar bg="light" variant="light">
@@ -35,14 +37,17 @@ function Navigation() {
               </Nav>
               {isAuth ?
                 <Nav className="ml-auto">
-                  <Button
-                    variant={"outline-dark"}
-                    className="m-1"
-                    onClick={() => navigate(ADMIN_ROUTE)}
-                    >
-                      Админ панель
-                  </Button>
-
+                  {user.role === 'ADMIN' ?
+                    <Button
+                      variant={"outline-dark"}
+                      className="m-1"
+                      onClick={() => navigate(ADMIN_ROUTE)}
+                      >
+                        Админ панель
+                    </Button>
+                    :
+                    false
+                  }
                   <Button
                     variant={"outline-dark"}
                     className="m-1"

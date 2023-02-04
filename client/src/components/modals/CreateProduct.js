@@ -8,7 +8,6 @@ import { setCategories } from "../../store/productSlicer";
 function CreateProduct({show, onHide}) {
 
     const collection = useSelector(selectCategories);
-    console.log(collection)
 
     const [composition, setComposition] = useState([]);
     const [name, setName] = useState('');
@@ -19,13 +18,10 @@ function CreateProduct({show, onHide}) {
     const [file, setFile] = useState(null);
     const [nameCategory, setNameCategory] = useState();
 
-    console.log(advise)
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log(1)
         fetchCategories().then(data => dispatch(setCategories(data)))
-        console.log(2)
     }, [])
 
 
