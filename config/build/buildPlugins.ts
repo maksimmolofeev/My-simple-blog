@@ -9,5 +9,5 @@ export function buildPlugins({paths}: BuildOptions): webpack.WebpackPluginInstan
         new HtmlWebpackPlugin({
             template: paths.html
         }),
-      ]
+    ]
 }
