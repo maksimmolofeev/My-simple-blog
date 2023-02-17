@@ -1,5 +1,3 @@
-import { AboutPage } from "page/AboutPage"
-import { MainPage } from "page/MainPage"
 import { Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
 import { routeConfig } from "shared/config/routeConfig/routeConfig"
