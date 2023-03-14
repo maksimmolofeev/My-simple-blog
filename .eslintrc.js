@@ -41,7 +41,7 @@ module.exports = {
         'no-underscore-dangle': 'off',
         'react/prop-types': 'off',
         "i18next/no-literal-string": ['error', { markupOnly: true }],
-        "max-len": ["error", { "code": 80 }]
+        "max-len": ["error", { "code": 100 }]
     },
     globals: {
         __IS_DEV__: true,
