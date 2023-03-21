@@ -1,9 +1,9 @@
 name: linting, testing, building
 on:
   push:
-    branch: [ master ]
+    branches: [ master ]
   pull_request:
-    branch: [ master ]
+    branches: [ master ]
 jobs:
   pipeline:
     runs-on: ubuntu-latest
@@ -12,18 +12,18 @@ jobs:
         node-version: [ 17.x ]
   
     steps:
-    - uses: actions/checkout@v2
-    - name: Staring Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with: 
-        node-version: ${{ matrix.node-version }}
-    - name: Init project
-      run: npm install
-    - name: Production build
-    run: npm run build:prod
-    - name: Linting TS
-    run: npm run lint:ts
-    - name: Linting SCSS
-    run: npm run lint:scss
-    - name: Unit testing
-    run: npm run test:unit
+      - uses: actions/checkout@v2
+      - name: Staring Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with: 
+          node-version: ${{ matrix.node-version }}
+      - name: Init project
+        run: npm install
+      - name: Production build
+      run: npm run build:prod
+      - name: Linting TS
+      run: npm run lint:ts
+      - name: Linting SCSS
+      run: npm run lint:scss
+      - name: Unit testing
+      run: npm run test:unit
