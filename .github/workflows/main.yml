@@ -1,16 +1,15 @@
-name: listing, testing, building
+name: linting, testing, building
 on:
   push:
     branch: [ master ]
   pull_request:
     branch: [ master ]
 jobs:
-  build:
-  runs-on: ubuntu-latest
-
-  strategy:
-    matrix:
-      node-version: [18.x]
+  pipeline:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 17.x ]
   
   steps:
   - uses: actions/checkout@v2
