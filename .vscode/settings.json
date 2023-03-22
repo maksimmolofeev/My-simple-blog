@@ -8,5 +8,5 @@
     "stylelint.validate": [
         "css",
         "scss"
-    ],
+    ]
 }
