@@ -7,7 +7,6 @@ const MainPage: FC = () => {
 
     return (
         <div>
-            <BugButton />
             {t('Главная страница')}
         </div>
     )
