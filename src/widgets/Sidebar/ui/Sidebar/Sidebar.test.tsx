@@ -1,7 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react'
 import React from 'react'
 import componentRender from 'shared/lib/tests/componentRender'
-import renderWithTranslation from 'shared/lib/tests/renderWithTranslation'
 import { Sidebar } from './Sidebar'
 
 
