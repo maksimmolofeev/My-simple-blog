@@ -8,7 +8,8 @@ interface ModalProps {
     className?: string;
     children?: ReactNode;
     isOpen: boolean;
-    onClose: () => void
+    onClose: () => void;
+    lazy?: boolean
 }
 
 export const Modal: FC<ModalProps> = (props) => {
@@ -16,13 +17,21 @@ export const Modal: FC<ModalProps> = (props) => {
         className,
         children,
         isOpen,
-        onClose
+        onClose,
+        lazy
     } = props;
 
     const ANIMATION_DELAY = 300
     const [isClosing, setIsClose] = useState(false);
     const timerRef = useRef<ReturnType<typeof setTimeout>>();
     const { theme } = useTheme();
+    const [isMounted, setIsMounted] = useState(false)
+
+    useEffect(() => {
+        if (isOpen) {
+            setIsMounted(true)
+        }
+    }, [isOpen])
 
     const mods: Record<string, boolean> = {
         [cls.opened]: isOpen,
@@ -57,6 +66,10 @@ export const Modal: FC<ModalProps> = (props) => {
             window.removeEventListener('keydown', onKeyDown)
         )
     }, [isOpen, onKeyDown])
+
+    if (lazy && !isMounted) {
+        return null
+    }
 
     return (
         <Portal>
